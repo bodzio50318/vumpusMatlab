@@ -1,6 +1,6 @@
 function [ direction ] = translator( netOut )
 activeDir=pwd;
-addpath(strcat(activeDir,'\Functions'));
+addpath(strcat(activeDir,'/Functions'));
 
 if(isWithin(netOut, 0,90))
     direction=1;

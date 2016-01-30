@@ -8,30 +8,51 @@ trainingSetName='default.mat';
 
 X=[];
 T=[];
+figure;
+
 for i=1:100
     
-
-alive=1;
-points=20;
-clear worldList;
+    alive=1;
+    points=20;
+    clear worldList;
 
     world=worldGenerator();
-    worldList(1) = struct('world',world,'move','null');
-    while alive && points>0
-        move=randi([1 4],1,1);
-        [ newWorld,alive,points]=nextWorld(world,move,points);
-        world=newWorld;
+   % move=randomizeMove(1,1)
+   % pause;
+   % worldList(1) = struct('world',world,'move',move);
+    worldList=[];
+    while 1
+        [xP,yP]=findPlayer(world);
+        move=randomizeMove(xP,yP)
+       printWorld(world); 
         worldList=[worldList,struct('world',world,'move',move)];
+        
+        [ newWorld,alive,points]=nextWorld(world,move,points); 
+        if alive==0
+            if points>0
+                % tu wpisalismy 3 bo jak wygra to chyba nie robi gdzie sie
+                % dalej poruszy
+                worldList=[worldList,struct('world',newWorld,'move',3)];
+                break; 
+            else
+                break;
+            end
+            
+        end
+        world=newWorld;
+        
     end
 
     if points>0
-       i
+      
        for j=1:length(worldList)    
-%            printWorld(worldList(j).world);  
-%            pause;
+           printWorld(worldList(j).world); 
+           
+           
         [X,T]=updateTrainingSet(worldList,X,T);
-
+           pause;
        end
+       pause;
     end
 end
 

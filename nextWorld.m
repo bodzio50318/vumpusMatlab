@@ -11,13 +11,13 @@ newWorld(x,y).player=0;
 
 switch move
     case 1
-        y=y-1;
-    case 2
-        x=x+1;
-    case 3
-        y=y+1;
-    case 4
         x=x-1;
+    case 2
+        y=y+1;
+    case 3
+        x=x+1;
+    case 4
+        y=y-1;
 end
 
 if x==5
