@@ -19,4 +19,4 @@ rand=randi([1 10000],1,1);
 output1=net(X(:,rand))
 
 
-move=transaltor(output1)
+move=translator(output1)
