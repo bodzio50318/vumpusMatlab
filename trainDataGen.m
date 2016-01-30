@@ -2,9 +2,12 @@ clear;
 clc;
 
 activeDir=pwd;
-networkName='default.mat';
-load(strcat(activeDir,'/Networks/',networkName));
+addpath(strcat(activeDir,'/Functions'));
 
+trainingSetName='default.mat';
+
+X=[];
+T=[];
 for i=1:100
     
 
@@ -13,21 +16,27 @@ points=20;
 clear worldList;
 
     world=worldGenerator();
-    worldList(1) = struct('world',world);
-    while alive
-        [ newWorld,alive,points]=nextWorld(world,randi([1 4],1,1),points);
+    worldList(1) = struct('world',world,'move','null');
+    while alive && points>0
+        move=randi([1 4],1,1);
+        [ newWorld,alive,points]=nextWorld(world,move,points);
         world=newWorld;
-        worldList=[worldList,struct('world',world)];
+        worldList=[worldList,struct('world',world,'move',move)];
     end
 
-    if points>=0
-       figure;
+    if points>0
+       i
        for j=1:length(worldList)    
-           printWorld(worldList(j).world);  
-           pause;
+%            printWorld(worldList(j).world);  
+%            pause;
+        [X,T]=updateTrainingSet(worldList,X,T);
+
        end
     end
 end
+
+
+save(strcat(activeDir,'\TrainData\',trainingSetName),'X','T');
     
     
 

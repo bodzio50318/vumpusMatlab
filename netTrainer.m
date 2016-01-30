@@ -1,15 +1,13 @@
 clear;
 clc;
 activeDir=pwd;
-triningSetName='default.mat';
-networkName='default.mat';
+trainingSetName='default.mat';
+networkName='randomInput.mat';
 
-net=feedforwardnet(10);
+net=feedforwardnet(20);
 
-load(strcat(activeDir,'\TrainData\',triningSetName));
-
+load(strcat(activeDir,'\TrainData\',trainingSetName));
 
 [net,tr] = train(net,X,T);
-
 
 save(strcat(activeDir,'\Networks\',networkName),'net');
