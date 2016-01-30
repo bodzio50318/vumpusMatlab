@@ -1,4 +1,4 @@
-function [ world ] = mapGenerator()
+function [ world ] = worldGenerator()
 %% constants
 dim = 4;
 nWumpus = 1;
@@ -10,7 +10,8 @@ world = [];
 clear world;
 
 %% world generation
-world(1:dim,1:dim) = struct('type',0,'senses',zeros(1,3));
+world(1:dim,1:dim) = struct('type',0,'senses',zeros(1,3),'player',0);
+world(1,1).player = 1;
 
 for i = 1:nHoles 
     
