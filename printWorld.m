@@ -1,4 +1,4 @@
-function [] = printWorld( world )
+  function [] = printWorld( world )
 dim = 4;
 ratio=1/dim;
 l = dim*100;
@@ -18,8 +18,19 @@ for r = 1:dim
         printType(world(r,c).type,r,c)
         
         if world(r,c).player == 1
-            printType(4,r,c)
+            printType(4,r,c);
         end
+        
+        if sum(world(r,c).senses)== 0 || world(r,c).type ~= 0
+            continue;
+        else
+            for i=1:3
+                if world(r,c).senses(i)
+                    printType(i+4,r,c); 
+                end
+            end
+        end
+        
         
         
     end
