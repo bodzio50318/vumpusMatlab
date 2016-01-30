@@ -3,7 +3,7 @@ function [ newWorld,alive ] = nextWorld( world,move )
 newWorld=world;
 
 activeDir=pwd;
-addpath(strcat(activeDir,'\Functions'));
+addpath(strcat(activeDir,'/Functions'));
 
 
 [x,y]=findPlayer(world);

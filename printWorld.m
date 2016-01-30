@@ -2,8 +2,7 @@ function [] = printWorld( world )
 dim = 4;
 ratio=1/dim;
 l = dim*100;
-figure;
-rectangle('Position',[0 -l l l]);
+rectangle('Position',[0 -l l l],'FaceColor','w');
 hold on;
 for i = 1:dim
     
@@ -21,6 +20,7 @@ for r = 1:dim
         if world(r,c).player == 1
             printType(4,r,c)
         end
+        
         
     end
 end

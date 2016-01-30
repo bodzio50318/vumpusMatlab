@@ -5,10 +5,11 @@ activeDir=pwd;
 networkName='default.mat';
 
 
-load(strcat(activeDir,'\Networks\',networkName));
+% load(strcat(activeDir,'\Networks\',networkName));
 
 world=worldGenerator();
-printWorld(world);
+figure;
+printWorld(world);  
 pause;
 
 alive=1;
