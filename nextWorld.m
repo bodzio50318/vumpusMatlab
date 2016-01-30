@@ -1,4 +1,4 @@
-function [ newWorld,alive ] = nextWorld( world,move )
+function [ newWorld,alive,points ] = nextWorld( world,move,points )
 
 newWorld=world;
 
@@ -32,9 +32,16 @@ end
 
 newWorld(x,y).player=1;
 
+points=points-1;
+
 alive=1;
 if newWorld(x,y).type~=0
     alive=0;
+    if(newWorld(x,y).type==1 || newWorld(x,y).type==2 )
+        points=points-1000;
+    else
+        points=points+1000;
+    end
 end
 
 

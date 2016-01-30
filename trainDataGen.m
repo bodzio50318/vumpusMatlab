@@ -1,25 +1,34 @@
 clear;
 clc;
 
-
 activeDir=pwd;
-triningSetName='default.mat';
+networkName='default.mat';
+load(strcat(activeDir,'/Networks/',networkName));
 
-N=5;
+for i=1:100
+    
 
-pos=randi([1 4],2,N);
-senses=randi([0 1],3,N);
-pos1=randi([1 4],2,N);
+alive=1;
+points=20;
+clear worldList;
 
-X=[pos;senses;pos1];
+    world=worldGenerator();
+    worldList(1) = struct('world',world);
+    while alive
+        [ newWorld,alive,points]=nextWorld(world,randi([1 4],1,1),points);
+        world=newWorld;
+        worldList=[worldList,struct('world',world)];
+    end
 
-options=[45,135,225,315];
-
-chosen=randi([1 4],1,N);
-
-for i=1:N
-   T(i)=options(chosen(i)); 
+    if points>=0
+       figure;
+       for j=1:length(worldList)    
+           printWorld(worldList(j).world);  
+           pause;
+       end
+    end
 end
+    
+    
 
-T
-save(strcat(activeDir,'\TrainData\',triningSetName),'X','T');
+    
