@@ -5,7 +5,7 @@ clc;
 activeDir=pwd;
 triningSetName='default.mat';
 
-N=10000;
+N=5;
 
 pos=randi([1 4],2,N);
 senses=randi([0 1],3,N);
