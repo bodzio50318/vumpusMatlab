@@ -76,14 +76,7 @@ for r =1:dim
         end
     end
 end
-
-worldSenses = [];
-for i=1:dim
-    for j=1:dim
-    worldSenses(i,j) = world(i,j).senses
-    end
-end
-worldSenses;    
+   
         
         
         
