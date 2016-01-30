@@ -33,7 +33,6 @@ end
 newWorld(x,y).player=1;
 
 alive=1;
-newWorld(x,y).type
 if newWorld(x,y).type~=0
     alive=0;
 end

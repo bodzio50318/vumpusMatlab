@@ -8,15 +8,19 @@ networkName='default.mat';
 load(strcat(activeDir,'\Networks\',networkName));
 
 world=worldGenerator();
+printWorld(world);
+pause;
 
-world=nextWorld(world,2);
-world=nextWorld(world,2);
-world=nextWorld(world,2);
-world=nextWorld(world,3);
-world=nextWorld(world,1);
-world=nextWorld(world,1);
-world=nextWorld(world,4);
+alive=1;
 
+
+
+while alive
+    [ newWorld,alive]=nextWorld(world,randi([1 4],1,1));
+    printWorld(newWorld);
+    pause;
+    world=newWorld;
+end
 
 % 
 % triningSetName='default.mat';

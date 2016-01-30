@@ -1,4 +1,4 @@
-world = worldGenerator();
+function [] = printWorld( world )
 dim = 4;
 ratio=1/dim;
 l = dim*100;
