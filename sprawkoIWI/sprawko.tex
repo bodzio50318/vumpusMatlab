@@ -134,7 +134,7 @@
 
 % Title
 %\HRule \\[0.4cm]
-{ \huge \bfseries Agent with implemented cognitive structure which learns how to play Wumpus World game based on neural network. \\[0.4cm] }
+{ \huge \bfseries Agent with cognitive structure \\[0.4cm] }
 
 %\HRule \\[1.5cm]
 
@@ -150,17 +150,16 @@ inż. Szymon Grocholski 131126 IDS, KSDiR\\
 \end{minipage}
 
 \section{Introduction}
-The project is about to implement an agent which should learn the rules of the game. 
-	\subsection{Task explanation}
-	Our task was to create an agent without a priori knowledge about the game, the 
-	environment and rules then train him and check whether he has learnt something.
+The project is about to implement an agent which should learn the rules of the Wumpus World game. The solution will be based on neuron networks.
+	
 	\subsection{Main idea}
-	Main idea is to prepare a training set which will be used by a neural network to learn
+	Our task was to create an agent without a priori knowledge about the game, the 
+	environment and rules then train him and check whether he has learnt something.Main idea is to prepare a training set which will be used by a neural network to learn
 	 the rules of the world and test is comparing with different network architectures.
-	 Main data flow is shown in the Pic~\ref{pic:flow}.
+	 Main data flow is shown in the Pic.~\ref{pic:flow}.
 	 \begin{figure}[!h]
 		\centering	
-		\includegraphics[width=\textwidth]{pic/arch.png}
+		\includegraphics[width=1.2\textwidth]{pic/arch.jpg}
 		\caption{Data flow of the program }
 		\label{pic:flow}
 	\end{figure}
@@ -169,7 +168,7 @@ The project is about to implement an agent which should learn the rules of the g
 	used 1 and 2 layers. The version with one layer is presented on the Pic~\ref{pic:networkExample}
 	\begin{figure}[!h]
 		\centering	
-		\includegraphics[width=\textwidth]{pic/networkExample.png}
+		\includegraphics[width=\textwidth]{pic/networkExample.jpg}
 		\caption{One of the network architectures}
 		\label{pic:networkExample}
 	\end{figure}
@@ -185,18 +184,18 @@ The project is about to implement an agent which should learn the rules of the g
 		rest of the coefficients are analogical from previous steps
 	
 	The output of the network gives us a number from $0-360$ which is the angle. This value
-	is translated to a move according to the Pic~\ref{pic:compass}
+	is translated to a move according to the Pic.~\ref{pic:compass}
 	\begin{figure}[!h]
 	\centering	
-	\includegraphics[width=\textwidth]{pic/kompass.jpg}
+	\includegraphics[width=0.7\textwidth]{pic/kompass.jpg}
 	\caption{The picture shows how angles are mapped into move}
 \label{pic:compass}
 \end{figure}
 	\begin{itemize}
-		\item 1; UP
-		\item 2; RIGHT
-		\item 3; DOWN
-		\item 4; LEFT
+		\item 1 - UP
+		\item 2 - RIGHT
+		\item 3 - DOWN
+		\item 4 - LEFT
 	\end{itemize}
 	
 
@@ -224,58 +223,26 @@ The project is about to implement an agent which should learn the rules of the g
 	 Improvement of this was to input some a prori knowledge by human, so we created the manual
 	 training data generator which stored the walkthroughs which were committed by a real human player.
 	 This enabled us to prepare more suitable training set but it was tiresome and time consuming method.
-	 The concept of the training is presented on Pic~\ref{pic:}
+	 
 	 
 	\paragraph{Network training}
-	In this stage we use
+	In this stage we use our training date prepared in the previous stage to train the network.
+	The concept of the training is presented on Pic.~\ref{pic:trainDataAuto}
+	 \begin{figure}[!h]
+		\centering	
+		\includegraphics[width=0.7\textwidth]{pic/trainDataAuto.jpg}
+		\caption{The algorithm of the training}
+		\label{pic:trainDataAuto}
+	\end{figure}
 	\paragraph{Execution}
+	
+	
 
 	
 
-\subsection{Test results}
 
 
 
-
-\subsection{Test 1}
-
-\begin{figure}[!h]
-	\begin{flushleft}
-	\subfloat[ 10 fireflies \label{fig:obs1:1}]{\includegraphics[width=0.7\textwidth]{pic/11.png}}
-	\subfloat[ 15 fireflies \label{fig:obs1:2}]{\includegraphics[width=0.7\textwidth]{pic/12.png}}
-	\end{flushleft}
-	\caption{Obstacle 1}
-\label{fig:obs11}
-\end{figure}
-
-
-
-\subsection{Test 3}
-
-In the third test was the easiest one. Almost all tests ended with success. All the performance are good but the best was with 70 fireflies.
-\begin{figure}[!h]
-	\begin{flushleft}
-	\subfloat[ 10 fireflies \label{fig:obs3:2}]{\includegraphics[width=0.7\textwidth]{pic/33.png}}
-	\subfloat[ 15 fireflies \label{fig:obs3:3}]{\includegraphics[width=0.7\textwidth]{pic/34.png}}
-	\end{flushleft}
-	\caption{Obstacle 3}
-\label{fig:obs31}
-\end{figure}
-\begin{figure}[!h]
-	\begin{flushleft}
-	\subfloat[ 20 fireflies \label{fig:obs3:4}]{\includegraphics[width=0.7\textwidth]{pic/35.png}}
-	\subfloat[ 25 fireflies \label{fig:obs3:5}]{\includegraphics[width=0.7\textwidth]{pic/36.png}}
-	\end{flushleft}
-	\caption{Obstacle 3}
-\label{fig:obs32}
-\end{figure}
-\begin{figure}[!h]
-	\begin{flushleft}
-	\subfloat[ 50 fireflies \label{fig:obs3:7}]{\includegraphics[width=0.7\textwidth]{pic/37.png}}
-	\end{flushleft}
-	\caption{Obstacle 3}
-\label{fig:obs33}
-\end{figure}
 
 \section{Conclusions}
 
