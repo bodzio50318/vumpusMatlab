@@ -8,7 +8,7 @@ activeDir=pwd;
 
 addpath(strcat(activeDir,'/Functions'));
 networkName1='randomInput99.mat';
-networkName2='randomInput7N.mat';
+networkName2='manualInput100.mat';
 
 
 sumPointsN1=0;

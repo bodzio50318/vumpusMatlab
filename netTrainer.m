@@ -4,19 +4,20 @@ activeDir=pwd;
 
 addpath(strcat(activeDir,'/Functions'));
 
-numOfNeurons=99;
+numOfNeurons=100;
 
-trainingSetName='default.mat';
-networkNameBase='randomInput';
+trainingSetName='manualTrainData.mat';
+networkNameBase='manualInput';
+
 
 networkName=strcat(networkNameBase,num2str(numOfNeurons),'.mat');
 
 
-load(strcat(activeDir,'\TrainData\',trainingSetName));
+load(strcat(activeDir,'/TrainData/',trainingSetName));
 
 net=feedforwardnet(numOfNeurons);
 
 
 [net,tr] = train(net,X,T);
 
-save(strcat(activeDir,'\Networks\',networkName),'net');
+save(strcat(activeDir,'/Networks/',networkName),'net');
