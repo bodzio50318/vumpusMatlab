@@ -156,7 +156,27 @@ The project is about to implement an agent which should learn the rules of the W
 	Our task was to create an agent without a priori knowledge about the game, the 
 	environment and rules then train him and check whether he has learnt something.Main idea is to prepare a training set which will be used by a neural network to learn
 	 the rules of the world and test is comparing with different network architectures.
-	 Main data flow is shown in the Pic.~\ref{pic:flow}.
+	 Main data flow is shown in the Pic.~\ref{pic:flow}. 
+	 
+	 Everything starts from worldGenerator where the world is being set. The GUI for the game is presented in Pic.~\ref{pic:gui}. The legend is as follows:
+	 	\begin{itemize}
+				\item red field - Wumpus!
+				\item gray field - hole
+				\item yellow field - gold
+				\item black rectangle - player 
+				\item senses are wrote explicite
+			\end{itemize}
+	 Then we can play the game by our own or let the network take the decisions. 
+	 
+	 For every move the agent gets -1 pt. For finding gold agent gets 1000 pts and for encountering the Wumpus or a hole gets -1000 pts. After the game we can check the status of points and the game result.
+	 
+	 
+	  \begin{figure}[!h]
+		\centering	
+		\includegraphics[width=0.9\textwidth]{pic/gui.png}
+		\caption{User interface for the Wumpus game}
+		\label{pic:gui}
+	\end{figure}
 	 \begin{figure}[!h]
 		\centering	
 		\includegraphics[width=1.2\textwidth]{pic/arch.jpg}
@@ -209,8 +229,8 @@ The project is about to implement an agent which should learn the rules of the W
 		\item Network training 
 		\item Execution
 			\begin{itemize}
-				\item Animation of one walkthrough
-				\item Comparison of two networks 
+				\item Animation of one game
+				\item Performance comparison 
 			\end{itemize}
 	\end{enumerate}
 	
@@ -220,9 +240,12 @@ The project is about to implement an agent which should learn the rules of the W
 	 generated walkthroughs with success - gold was found. Unfortunately this method has stored 
 	 many moves which had no sense, like bumping often into walls and ignoring the meaning 
 	 of the senses.  
+	 
 	 Improvement of this was to input some a prori knowledge by human, so we created the manual
 	 training data generator which stored the walkthroughs which were committed by a real human player.
 	 This enabled us to prepare more suitable training set but it was tiresome and time consuming method.
+	 
+	After every good walkthrough of the given game all the world are stored on the worldList. This list is needed to display the world for debugging purposes and for preparation of the input vector for the network.
 	 
 	 
 	\paragraph{Network training}
@@ -234,17 +257,13 @@ The project is about to implement an agent which should learn the rules of the W
 		\caption{The algorithm of the training}
 		\label{pic:trainDataAuto}
 	\end{figure}
-	\paragraph{Execution}
 	
 	\input{performance} 
 
+	\section{Results}
+	\input{RandomBasedNetworks}
+	\section{Conclusions}
+	The problem stated that the agent has no a priori knowledge of the world. The knowledge was provided to him in the training of the neuron network. Unfortunately the level of abstraction was too high for the net configuration and architecture presented in the project. The input to our neuron network was constructed with 1 current and 2 previous position of the agent with the senses. It is very hard to match the input vector with the meaning - position and the senses. In the end we obtained results a little bit better than random movement in win/loose ratio. On the other hand our network gives much better result taking into consideration the average points result. 
 	
 
-\section{Test results}
-
-
-
-\section{Conclusions}
-
-\section{}
 \end{document}
