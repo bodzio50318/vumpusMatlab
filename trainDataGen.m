@@ -10,7 +10,7 @@ X=[];
 T=[];
 
 
-for i=1:200
+for i=1:5000
     
     alive=1;
     points=20;

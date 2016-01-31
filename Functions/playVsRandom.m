@@ -1,10 +1,10 @@
-function [ pointsNet,pointsRandom,netWins,randomWins ] = playVsRandom(networkName)
+function [ pointsNet,pointsRandom,netWins,randomWins ] = playVsRandom(net)
 
 world=worldGenerator();
 netWins=0;
 randomWins=0;
 
-pointsNet=netGame(networkName,world);
+pointsNet=netGame(net,world);
 pointsRandom=randomGame(world);
 
 if pointsNet >0

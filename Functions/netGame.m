@@ -1,8 +1,6 @@
-function [ points ] = netGame( networkName,world )
+function [ points ] = netGame( net,world )
 
-activeDir=pwd;
 
-load(strcat(activeDir,'/Networks/',networkName));
 
 
 x = [1,1,world(1,1).senses,1,1,world(1,1).senses,1,1,world(1,1).senses]';
