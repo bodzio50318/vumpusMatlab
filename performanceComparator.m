@@ -1,29 +1,43 @@
 clear;
 clc;
 
+rng shuffle
+
+
+
 vsRandom=1;
-numOfGames=5 00;
+numOfGames=200;
 
 activeDir=pwd;
 
+
+
 addpath(strcat(activeDir,'/Functions'));
-networkName1='manualInput100.mat';
+networkName1='auto2layer10N100.mat';
+
+
+load(strcat(activeDir,'/Networks/',networkName1));
+
 %networkName2='manualInput1000.mat';
 
 
 sumPointsN1=0;
 sumPointsN2=0;
-sumOfWinsN1=0
-sumOfWinsN2=0
+
+sumOfWinsN1=0;
+sumOfWinsN2=0;
+
+% figure;
+
 if(vsRandom==1)
     for i=1:numOfGames
         i
-        [pointsN1,pointsN2,net1Wins,net2Wins]=playVsRandom(networkName1);
-        sumPointsN1=sumPointsN1+pointsN1;
-        sumPointsN2=sumPointsN2+pointsN2;
+        [ pointsNet,pointsRandom,netWins,randomWins ]=playVsRandom(net);
+        sumPointsN1=sumPointsN1+pointsNet;
+        sumPointsN2=sumPointsN2+pointsRandom;
         
-        sumOfWinsN1=sumOfWinsN1+net1Wins;
-        sumOfWinsN2=sumOfWinsN2+net2Wins;
+        sumOfWinsN1=sumOfWinsN1+netWins;
+        sumOfWinsN2=sumOfWinsN2+randomWins;
     end
 else
      for i=1:numOfGames

@@ -6,15 +6,15 @@ addpath(strcat(activeDir,'/Functions'));
 
 numOfNeurons=100;
 
-trainingSetName='manualTrainData.mat';
-networkNameBase='manualInput';
+trainingSetName='default.mat';
+networkNameBase='test';
 
 networkName=strcat(networkNameBase,num2str(numOfNeurons),'.mat');
 
 
 load(strcat(activeDir,'\TrainData\',trainingSetName));
 
-net=feedforwardnet(numOfNeurons);
+net=feedforwardnet([numOfNeurons 10]);
 
 
 [net,tr] = train(net,X,T);
