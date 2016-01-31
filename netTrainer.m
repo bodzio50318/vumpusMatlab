@@ -1,10 +1,13 @@
 clear;
 clc;
 activeDir=pwd;
+
+addpath(strcat(activeDir,'/Functions'));
+
 trainingSetName='default.mat';
 networkName='randomInput.mat';
 
-net=feedforwardnet(20);
+net=feedforwardnet(100);
 
 load(strcat(activeDir,'\TrainData\',trainingSetName));
 
