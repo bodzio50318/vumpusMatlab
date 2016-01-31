@@ -6,14 +6,14 @@ rng shuffle
 
 
 vsRandom=1;
-numOfGames=200;
+numOfGames=1000;
 
 activeDir=pwd;
 
 
 
 addpath(strcat(activeDir,'/Functions'));
-networkName1='auto2layer10N100.mat';
+networkName1='randomNetwork80.mat';
 
 
 load(strcat(activeDir,'/Networks/',networkName1));
