@@ -8,18 +8,15 @@ trainingSetName='default.mat';
 
 X=[];
 T=[];
-figure;
 
-for i=1:500
+
+for i=1:200
     
     alive=1;
     points=20;
     clear worldList;
     
     world=worldGenerator();
-    % move=randomizeMove(1,1)
-    % pause;
-    % worldList(1) = struct('world',world,'move',move);
     worldList=[];
     while 1
         [xP,yP]=findPlayer(world);

@@ -2,6 +2,8 @@ clear;
 clc;
 
 activeDir=pwd;
+
+addpath(strcat(activeDir,'/Functions'));
 networkName='randomInput.mat';
 
 
@@ -11,7 +13,8 @@ world=worldGenerator();
 figure;
 printWorld(world);
 pause;
-x=[1,1,world(1,1).senses,1,1]';
+
+x = [1,1,world(1,1).senses,1,1,world(1,1).senses,1,1,world(1,1).senses]';
 alive=1;
 points=20;
 
@@ -25,8 +28,7 @@ while alive
     printWorld(newWorld);
     pause;
     world=newWorld;
-    [xi,yi]=findPlayer(world);
-    x=[xi,yi,world(xi,yi).senses,x(1),x(2)]';
+    x=createNextX(x,world);
 
     if points<0 
         break;
