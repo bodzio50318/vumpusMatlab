@@ -150,26 +150,65 @@ inż. Szymon Grocholski 131126 IDS, KSDiR\\
 \end{minipage}
 
 \section{Introduction}
+The project is about to implement an agent which should learn the rules of the game. 
 	\subsection{Task explanation}
+	Our task was to create an agent without a priori knowledge about the game, the 
+	environment and rules then train him and check whether he has learnt something.
 	\subsection{Main idea}
+	Main idea is to prepare a training set which will be used by a neural network to learn
+	 the rules of the world and test is comparing with different network architectures.
 	\subsection{Neural Network}
-
-\section{Implementation }
-	\subsection{Program Flow}
-		1) Train data	 a) Manual gen
-				b) 
-		\paragraph{Training data}
-		\paragraph{Network training}
-		\paragraph{Execution}
-
+	Our neural network contains parametirised number of hidden layers in testing phase we 
+	used 1 and 2 layers. The version with one layer is presented on the Pic~\ref{pic:networkExample} The input vector is as follows:
+	$$
+		[x_i, y_i, senses(i), x_(i-1), y_(i-1), senses(i-1), x_(i-2), y_(i-2), senses(i-2)]
+	$$
+	where 
+		$x_i$ - is the current position the row coordinate
+		$y_i$ - is the current position the column coordinate
+		$senses(i)$ - is a vector of senses from field with coordinates $(x_i, y_i)$
+		rest of the coefficients are analogical from previous steps
+	
+	The output of the network gives us a number from $0-360$ which is the angle. This value
+	is translated to a move according to the Pic~\ref{pic:compass}
+	\begin{itemize}
+		\item 1; UP
+		\item 2; RIGHT
+		\item 3; DOWN
+		\item 4; LEFT
+	\end{itemize}
 	
 
-\begin{itemize}
-\item alpha=0.2; Randomness 0--1 (highly random)
-\item beta=1;    Maximum attractiveness of a firefly
-\item gamma=0.8; Absorption coefficient
-\item delta=0.97; Randomness reduction (similar to an annealing schedule)
-\end{itemize}
+\section{Implementation }
+		\begin{enumerate}
+		\item Training data preparation
+			\begin{itemize}
+				\item Manual data generator 
+				\item Automated data generator
+			\end{itemize}
+		\item Network training 
+		\item Execution
+			\begin{itemize}
+				\item Animation of one walkthrough
+				\item Comparison of two networks 
+			\end{itemize}
+	\end{enumerate}
+	
+	\paragraph{Training data}
+	We construct two ways of preparing the training data. First one was automated, prepared 
+	based on random walkthroughs from which we select and store only good ones. This method
+	 generated walkthroughs with success - gold was found. Unfortunately this method has stored 
+	 many moves which had no sense, like bumping often into walls and ignoring the meaning 
+	 of the senses.  
+	 Improvement of this was to input some a prori knowledge by human, so we created the manual
+	 training data generator which stored the walkthroughs which were committed by a real human player.
+	 This enabled us to prepare more suitable training set but it was tiresome and time consuming method.
+	 
+	\paragraph{Network training}
+	In this stage we use
+	\paragraph{Execution}
+
+	
 
 \subsection{Test results}
 
