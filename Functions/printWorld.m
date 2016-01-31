@@ -19,11 +19,12 @@ for r = 1:dim
         
         if world(r,c).player == 1
             printType(4,r,c);
+            world(r,c).visible = 1;
         end
         
         if sum(world(r,c).senses)== 0 || world(r,c).type ~= 0
             continue;
-        else
+        elseif world(r,c).visible == 1
             for i=1:3
                 if world(r,c).senses(i)
                     printType(i+4,r,c); 

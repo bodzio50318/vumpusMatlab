@@ -13,7 +13,7 @@ activeDir=pwd;
 
 
 addpath(strcat(activeDir,'/Functions'));
-networkName1='randomNetwork80.mat';
+networkName1='manualInput100.mat';
 
 
 load(strcat(activeDir,'/Networks/',networkName1));

@@ -4,7 +4,7 @@ clc;
 activeDir=pwd;
 
 addpath(strcat(activeDir,'/Functions'));
-networkName='randomNetwork100.mat';
+networkName='manualInput100.mat';
 
 load(strcat(activeDir,'/Networks/',networkName));
 

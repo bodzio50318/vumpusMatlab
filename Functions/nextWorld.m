@@ -31,6 +31,7 @@ elseif y==5
 end
 
 newWorld(x,y).player=1;
+newWorld(x,y).visible=1;
 
 points=points-1;
 

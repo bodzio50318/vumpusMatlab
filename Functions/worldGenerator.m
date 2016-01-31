@@ -10,8 +10,9 @@ world = [];
 clear world;
 
 %% world generation
-world(1:dim,1:dim) = struct('type',0,'senses',zeros(1,3),'player',0);
+world(1:dim,1:dim) = struct('type',0,'senses',zeros(1,3),'player',0,'visible',0);
 world(1,1).player = 1;
+world(1,1).visible = 1;
 
 for i = 1:nHoles 
     
@@ -49,13 +50,6 @@ for i = 1:nGold
     world(x,y).type = 3;
    
 end
-worldTypes=zeros(4);
-for i=1:dim
-    for j=1:dim
-        worldTypes(i,j)=world(i,j).type;
-    end
-end
-worldTypes;
 
 for r =1:dim
     for c = 1:dim
