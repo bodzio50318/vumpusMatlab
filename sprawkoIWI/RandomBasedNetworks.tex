@@ -120,23 +120,21 @@
 
 \begin{document}
 
-
+In this test we used Neural Networks that were learned using the same automatically generated learning set. The we check the performance by playing $1000$ games and comparing the results to random player scores. 
 \begin{table}[!ht]
 \caption{Networks based on 'randomized' training data}
 \label{tab:randomizeNetwork}
 \begin{center}
 \begin{tabular}{|c||l|l|l|l|}
-\hline  Num of Neurons & Avg Score & Success Rate& Random Avg Points&Random Success Rate \\ \hline \hline
-In this test we used Neural Networks that were learned using the same automatically generated learning set. The we check the performance by playing $1000$ games and compering the results to random player scores. 
-
-80 & $-259.72$ &$0.17$&$-588.03$&$0.18$\\
-100 & $-467.25$ &$0.21$&$-580.02$&$0.17$\\\hline
+\hline  Number of Neurons & Avg Score & Success Rate& Random Avg Points&Random Success Rate \\ \hline \hline
+80 & $-259.72$ &$17\%$&$-588.03$&$18\%$\\
+100 & $-467.25$ &$21\%$&$-580.02$&$17\%$\\\hline
 \end{tabular}
 \end{center}
 \end{table}
 
+The points are in the range of $<-1000,1000>$ . It can be observed that our agent is a little bit more aware than the random one. He has committed fewer loses and got more points. Unfortunately the overall result is not satisfactory at all. The winning ration is at level of 20\% and a little bit better for 100 neurons.
 
-%\hline  Number of neurons & Avrage Points & Success ratio \hline
 
 
 \end{document}
