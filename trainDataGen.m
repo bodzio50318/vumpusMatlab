@@ -27,6 +27,11 @@ for i=1:100
        printWorld(world); 
         worldList=[worldList,struct('world',world,'move',move)];
         
+        for g=1:length(worldList)
+            
+            worldToMatrix(worldList(g).world);
+        end
+        
         [ newWorld,alive,points]=nextWorld(world,move,points); 
         if alive==0
             if points>0
