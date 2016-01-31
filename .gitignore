@@ -1,1 +1,6 @@
 *.asv
+*.bak
+*.out
+*.txt
+*.gz
+*.pdf
