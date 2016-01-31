@@ -4,10 +4,10 @@ activeDir=pwd;
 
 addpath(strcat(activeDir,'/Functions'));
 
-numOfNeurons=99;
+numOfNeurons=100;
 
-trainingSetName='default.mat';
-networkNameBase='randomInput';
+trainingSetName='manualTrainData.mat';
+networkNameBase='manualInput';
 
 networkName=strcat(networkNameBase,num2str(numOfNeurons),'.mat');
 
