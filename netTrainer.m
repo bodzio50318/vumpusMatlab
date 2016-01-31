@@ -4,12 +4,18 @@ activeDir=pwd;
 
 addpath(strcat(activeDir,'/Functions'));
 
-trainingSetName='default.mat';
-networkName='randomInput.mat';
+numOfNeurons=99;
 
-net=feedforwardnet(100);
+trainingSetName='default.mat';
+networkNameBase='randomInput';
+
+networkName=strcat(networkNameBase,num2str(numOfNeurons),'.mat');
+
 
 load(strcat(activeDir,'\TrainData\',trainingSetName));
+
+net=feedforwardnet(numOfNeurons);
+
 
 [net,tr] = train(net,X,T);
 
