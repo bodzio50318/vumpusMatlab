@@ -13,13 +13,13 @@ function [] = printType(type,r,c)
     elseif type == 4
         rectangle('Position',[(c-1)*l+10 -(r)*l+10 20 20 ],'FaceColor','black','LineWidth',0.01);
     elseif type == 5
-        label = 'wind';
+        label = 'wiatr';
         text((c-1)*l+40, -(r)*l+80,label,'FontSize',12);
     elseif type == 6
-        label = 'smell';
+        label = 'smród';
         text((c-1)*l+40, -(r)*l+60,label,'FontSize',12);
     elseif type == 7
-        label = 'glitter';
+        label = 'b³ysk';
         text((c-1)*l+40, -(r)*l+40,label,'FontSize',12);
     end
     

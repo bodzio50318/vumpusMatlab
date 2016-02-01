@@ -6,14 +6,15 @@ activeDir=pwd;
 addpath(strcat(activeDir,'/Functions'));
 numberOfWins = 0;
 numberOfGames = 0;
-figure;
-
+worldListCurrent = [];
+playerName='';
+playerName =input('Podaj nazwe gracza: ','s')
 %% loop
 terminateKey = 1;
-
+figure;
 while terminateKey ~= 0
     numberOfGames = numberOfGames+1;
-    worldList = [];
+    
     points = 20;
     alive = 1;
     testSetNumber=0;
@@ -24,7 +25,7 @@ while terminateKey ~= 0
     
     while 1
         printWorld(world)
-        userMove = getMove()
+        userMove = getMove();
         %         pause;
         % discard the world
         if userMove == 9
@@ -38,10 +39,12 @@ while terminateKey ~= 0
             disp('Termination Key pressed')
             break
         end
+        worldListCurrent=[worldListCurrent,struct('world',world,'move',userMove)];
 
         [newWorld,alive,points]=nextWorld(world,userMove,points);
         
         if alive==0
+            worldListCurrent=[worldListCurrent,struct('world',newWorld,'move','Uwin')];
             [newWorld]=makeWorldVisible(newWorld);
             printWorld(newWorld);
             pause;
@@ -63,16 +66,24 @@ while terminateKey ~= 0
         printWorld(world)
         
         testSetNumber = testSetNumber+1;
-        
+       
+    else
+        numberOfGames=numberOfGames+1;
     end
+    
     %%because the last game is always lost
     numberOfGames=numberOfGames-1;
 end
+performance = round(numberOfWins*100/numberOfGames);
+disp('Saving data results...');
+fileName = strcat(playerName,'_P',int2str(performance),'_G',int2str(numberOfGames));
+save(strcat(activeDir,'/TrainData/',fileName),'worldListCurrent');
+disp('End of program');
 
 disp(strcat('Won games: ',int2str(numberOfWins)));
 disp(strcat('Lost games: ',int2str(numberOfGames-numberOfWins)));
 disp(strcat('All games: ',int2str(numberOfGames)));
-disp(strcat('Performance: ',int2str(numberOfWins*100/numberOfGames),'%'));
+disp(strcat('Performance: ',int2str(performance),'%'));
 
 disp('End of program');
 
