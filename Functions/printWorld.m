@@ -15,23 +15,26 @@ end
 
 for r = 1:dim
     for c= 1:dim
-        printType(world(r,c).type,r,c)
+        
         
         if world(r,c).player == 1
             printType(4,r,c);
             world(r,c).visible = 1;
         end
         
-        if sum(world(r,c).senses)== 0 || world(r,c).type ~= 0
-            continue;
-        elseif world(r,c).visible == 1
+        
+        if world(r,c).visible == 1
+            printType(world(r,c).type,r,c)
             for i=1:3
                 if world(r,c).senses(i)
                     printType(i+4,r,c); 
                 end
             end
         end
-        
+        % in case the last move this is added
+        if world(r,c).player == 1
+            printType(4,r,c);
+        end
         
         
     end

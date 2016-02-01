@@ -4,17 +4,15 @@ close all;
 
 activeDir=pwd;
 addpath(strcat(activeDir,'/Functions'));
-
-trainingSetName='manualTrainData.mat';
-
-Xcurrent = [];
-Tcurrent = [];
+numberOfWins = 0;
+numberOfGames = 0;
 figure;
 
 %% loop
 terminateKey = 1;
 
 while terminateKey ~= 0
+    numberOfGames = numberOfGames+1;
     worldList = [];
     points = 20;
     alive = 1;
@@ -40,23 +38,15 @@ while terminateKey ~= 0
             disp('Termination Key pressed')
             break
         end
-        
-        worldList=[worldList,struct('world',world,'move',userMove)];
-        
+
         [newWorld,alive,points]=nextWorld(world,userMove,points);
         
         if alive==0
             [newWorld]=makeWorldVisible(newWorld);
             printWorld(newWorld);
             pause;
-            if points>0
-                % only for displaying purpose
-                worldList=[worldList,struct('world',newWorld,'move','Uwin')];
-                break;
-            else
-                break;
-            end
-            
+            break;
+   
         end
         world=newWorld;
         
@@ -65,22 +55,25 @@ while terminateKey ~= 0
     
     disp('End of game!')
     points
+    
     % if player is dead but points are >0 than he won and we are saving the data
     if points>0
+        numberOfWins = numberOfWins +1;
         % printing the last step
         printWorld(world)
-        [Xcurrent,Tcurrent]=updateTrainingSet(worldList,Xcurrent,Tcurrent);
+        
         testSetNumber = testSetNumber+1;
         
     end
-    
+    %%because the last game is always lost
+    numberOfGames=numberOfGames-1;
 end
-disp('Saving data results...');
-load(strcat(activeDir,'/TrainData/',trainingSetName),'X','T');
-X=[X,Xcurrent];
-T=[T,Tcurrent];
 
-save(strcat(activeDir,'/TrainData/',trainingSetName),'X','T');
+disp(strcat('Won games: ',int2str(numberOfWins)));
+disp(strcat('Lost games: ',int2str(numberOfGames-numberOfWins)));
+disp(strcat('All games: ',int2str(numberOfGames)));
+disp(strcat('Performance: ',int2str(numberOfWins*100/numberOfGames),'%'));
+
 disp('End of program');
 
 
