@@ -3,7 +3,7 @@ clc;
 
 rng shuffle
 vsRandom=1;
-numOfGames=1000;
+numOfGames=200;
 
 activeDir=pwd;
 
@@ -19,17 +19,22 @@ netMoveDecision =net;
 addpath(strcat(activeDir,'/Functions'));
 
 
-sumPointsN1=0;
-sumPointsN2=0;
-
-sumOfWinsN1=0;
-sumOfWinsN2=0;
-
+netWins=0;
+randomWins=0;
 
     for i=1:numOfGames
         i
         world=worldGenerator();
-        points=doubleNetGame(world,netMoveClassify,netMoveDecision);
+        netPoints=doubleNetGame(world,netMoveClassify,netMoveDecision);
+        if netPoints >0
+           netWins=netWins+1; 
+        end
+        
+        randomPoints=randomGame(world);
+        if randomPoints >0
+           randomWins=randomWins+1; 
+        end
+        
         %[netWins,randomWins]=doubleVsRandom(netMoveClassify,netMoveDecision)
       
 %         sumOfWinsN=sumOfWinsN+netWins;
@@ -37,6 +42,5 @@ sumOfWinsN2=0;
     end
 
 
-winRatio1=sumOfWinsN1/numOfGames
-
-winRatio2=sumOfWinsN2/numOfGames
+netRatio=netWins/numOfGames
+randoiomRat=randomWins/numOfGames
