@@ -1,6 +1,6 @@
 clear;
 clc;
-
+close all;
 rng shuffle
 vsRandom=1;
 numOfGames=1500;
@@ -21,6 +21,7 @@ addpath(strcat(activeDir,'/Functions'));
 
 netWins=0;
 randomWins=0;
+figure;
 
     for i=1:numOfGames
         i
@@ -29,6 +30,8 @@ randomWins=0;
         if netPoints >0
            netWins=netWins+1; 
         end
+        
+        
         
 %         randomPoints=randomGame(world);
 %         if randomPoints >0

@@ -13,6 +13,9 @@ move1=2;
 d=mod((world(1,1).senses(1)+world(1,1).senses(2)),2);
 g=world(1,1).senses(3);
 
+printWorld(world);
+pause;
+
 while alive
     
     finalProb=doubleNetMoveProb([xi,yi,d1,g1,move1,d,g]',netMoveClassify,netMoveDecision);
@@ -32,9 +35,14 @@ while alive
     
     [newWorld,alive,points]=nextWorld(world,move,points);
     
+    
+    
+    
     if points<0
         break;
     end
+    printWorld(newWorld);
+    pause(0.5);
     
     
     world=newWorld;
@@ -51,6 +59,9 @@ while alive
     
     
 end
+
+printWorldAll(newWorld);
+pause;
 
 
 end
