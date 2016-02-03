@@ -1,9 +1,9 @@
 clear;
 clc;
-
+close all;
 rng shuffle
 vsRandom=1;
-numOfGames=200;
+numOfGames=1500;
 
 activeDir=pwd;
 
@@ -21,6 +21,7 @@ addpath(strcat(activeDir,'/Functions'));
 
 netWins=0;
 randomWins=0;
+figure;
 
     for i=1:numOfGames
         i
@@ -30,10 +31,12 @@ randomWins=0;
            netWins=netWins+1; 
         end
         
-        randomPoints=randomGame(world);
-        if randomPoints >0
-           randomWins=randomWins+1; 
-        end
+        
+        
+%         randomPoints=randomGame(world);
+%         if randomPoints >0
+%            randomWins=randomWins+1; 
+%         end
         
         %[netWins,randomWins]=doubleVsRandom(netMoveClassify,netMoveDecision)
       
