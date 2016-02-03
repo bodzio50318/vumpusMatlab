@@ -70,9 +70,10 @@ while terminateKey ~= 0
         numberOfGames=numberOfGames+1;
     end
     
-    %%because the last game is always lost
-    numberOfGames=numberOfGames-1;
+    
 end
+%%because the last game is always lost
+numberOfGames=numberOfGames-1;
 performance = round(numberOfWins*100/numberOfGames);
 disp('Saving data results...');
 fileName = strcat(playerName,'_P',int2str(performance),'_G',int2str(numberOfGames));
