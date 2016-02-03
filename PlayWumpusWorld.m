@@ -45,8 +45,7 @@ while terminateKey ~= 0
         
         if alive==0
             worldListCurrent=[worldListCurrent,struct('world',newWorld,'move','Uwin')];
-            [newWorld]=makeWorldVisible(newWorld);
-            printWorld(newWorld);
+            printWorldAll(newWorld);
             pause;
             break;
    
