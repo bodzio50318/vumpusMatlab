@@ -3,7 +3,7 @@ clc;
 
 rng shuffle
 vsRandom=1;
-numOfGames=200;
+numOfGames=1500;
 
 activeDir=pwd;
 
@@ -30,10 +30,10 @@ randomWins=0;
            netWins=netWins+1; 
         end
         
-        randomPoints=randomGame(world);
-        if randomPoints >0
-           randomWins=randomWins+1; 
-        end
+%         randomPoints=randomGame(world);
+%         if randomPoints >0
+%            randomWins=randomWins+1; 
+%         end
         
         %[netWins,randomWins]=doubleVsRandom(netMoveClassify,netMoveDecision)
       

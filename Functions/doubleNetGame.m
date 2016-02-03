@@ -14,12 +14,9 @@ d=mod((world(1,1).senses(1)+world(1,1).senses(2)),2);
 g=world(1,1).senses(3);
 
 while alive
-    possibleMoves=netMoveClassify([xi,yi]');
-    moveDecision=netMoveDecision([d1,g1,move1,d,g]');
     
-    finalProb=possibleMoves.*moveDecision;
-    finalProb=finalProb/norm(finalProb,1);
-    finalProb=cumsum(finalProb);
+    finalProb=doubleNetMoveProb([xi,yi,d1,g1,move1,d,g]',netMoveClassify,netMoveDecision);
+    
     
     choice=rand();
     if choice< finalProb(1)
