@@ -170,6 +170,8 @@ The project is about to implement an agent which should learn the rules of the W
 	 
 	 For every move the agent gets -1 pt. For finding gold agent gets 1000 pts and for encountering the Wumpus or a hole gets -1000 pts. After the game we can check the status of points and the game result.
 	 
+The world is generated in the beginning of every game and is randomly set. Condition is that in the field $(1,1)$ where the player starts there is no gold, Wumpus nor hole. Unfortunately around 10\%  of the maps are unsolvable because of unfortunate placement of Wumpus and holes. The other 90\%  are the maps which are solvable with certain probability. Not all of them are solvable with probability of $100\%$. In many cases the player has 50\% chance of a good move regardless of previous moves and previous senses.
+	 
 	 
 	  \begin{figure}[!h]
 		\centering	
@@ -264,11 +266,6 @@ The project is about to implement an agent which should learn the rules of the W
 
 	\subsection{Results}
 	\input{RandomBasedNetworks}
-	\subsection{Conclusions}
-	The problem stated that the agent has no a priori knowledge of the world. The knowledge was provided to him in the training of the neuron network. Unfortunately the level of abstraction was too high for the net configuration and architecture presented in the project. The input to our neuron network was constructed with 1 current and 2 previous position of the agent with the senses. It is very hard to match the input vector with the meaning - position and the senses. In the end we obtained results a little bit better than random movement in win/loose ratio. On the other hand our network gives much better result taking into consideration the average points result. 
-	
-This project prepared a good framework for training, testing, and teaching the network how to play a Wumpus game. Unfortunately the network performance results are not as good as we wanted them to be. The next step should be to consider again the structure of the neural network, the number of hidden layers and the input itself.	
-
 
 \section{Second approach}
 	It is clearly visible that the first approach was not one that was promising any improvement. So we decided to rearrange the network. The main issue was that it was hard to provide correct training data. Since we had a framework that was flexible and robust enough we could easily test different configurations of the network.
@@ -308,12 +305,12 @@ The output was a $4x1$ vector containing probabilities of this move to be chosen
 	To combine the two vectors we multiply the value by value. Then normalize the outcome and create 'proportional roulette'. The move that is picked is the move that the agent will take.  
 
 \subsection{Results}
-	We encountered a big increase of success ration. Newly created agent was able to win around $32\%$ of games. 
+	We encountered a big increase of success ration. Newly created agent was able to win around $31\%$ of games. 
 	
 	There are still some issues that needs to be addressed.	When an agent doesn't have any memory it may fall into loops that may cause death cause by two many moves. It doesn't know that he has to risk it when there is no other options.
 
-\section{Human player}
-We also were curious how much games can a human win. Actually it came as an shock to us when it turned out that a trained man cannot win much more than 50\% of games even when all the history is displayed on the screen~pic.\ref{pic:humanGame}
+\input{Results}
+The human game is presented in~Pic.\ref{pic:humanGame} - the previous senses are visible but the types of fields are hidden.
 
 \begin{figure}[!h]
 		\centering	
@@ -324,5 +321,6 @@ We also were curious how much games can a human win. Actually it came as an shoc
 
 \section{Summary}
 
-
+	The problem stated to write an agent with cognitive structure. The knowledge was provided to him in the training of the neuron network. The first approach was not accurate because of the the trainig set, high level of abstraction and too many inputs. The conclusion from second approach is that its better to split the task into two easier tasks. The train data was prepared in better way too which resulted with a good performance. 
+This project prepared a good framework for training, testing, and teaching the network how to play a Wumpus game.
 \end{document}
