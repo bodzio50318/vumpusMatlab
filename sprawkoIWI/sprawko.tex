@@ -183,7 +183,9 @@ The project is about to implement an agent which should learn the rules of the W
 		\caption{Data flow of the program }
 		\label{pic:flow}
 	\end{figure}
-	\subsection{Neural Network}
+
+\section{First Approach}
+\subsection{Neural Network}
 	Our neural network contains parametirized number of hidden layers in testing phase we 
 	used 1 and 2 layers. The version with one layer is presented on the Pic~\ref{pic:networkExample}
 	\begin{figure}[!h]
@@ -219,7 +221,7 @@ The project is about to implement an agent which should learn the rules of the W
 	\end{itemize}
 	
 
-\section{Implementation }
+\subsection{Implementation }
 		\begin{enumerate}
 		\item Training data preparation
 			\begin{itemize}
@@ -260,11 +262,67 @@ The project is about to implement an agent which should learn the rules of the W
 	
 	\input{performance} 
 
-	\section{Results}
+	\subsection{Results}
 	\input{RandomBasedNetworks}
-	\section{Conclusions}
+	\subsection{Conclusions}
 	The problem stated that the agent has no a priori knowledge of the world. The knowledge was provided to him in the training of the neuron network. Unfortunately the level of abstraction was too high for the net configuration and architecture presented in the project. The input to our neuron network was constructed with 1 current and 2 previous position of the agent with the senses. It is very hard to match the input vector with the meaning - position and the senses. In the end we obtained results a little bit better than random movement in win/loose ratio. On the other hand our network gives much better result taking into consideration the average points result. 
 	
 This project prepared a good framework for training, testing, and teaching the network how to play a Wumpus game. Unfortunately the network performance results are not as good as we wanted them to be. The next step should be to consider again the structure of the neural network, the number of hidden layers and the input itself.	
+
+
+\section{Second approach}
+	It is clearly visible that the first approach was not one that was promising any improvement. So we decided to rearrange the network. The main issue was that it was hard to provide correct training data. Since we had a framework that was flexible and robust enough we could easily test different configurations of the network.
+\subsection{Neural Network project}
+\paragraph{Valid moves}
+	We found that our network often chooses move that hit the wall so we decided that this is the part of solution that we should focus on. On the pic.~\ref{pic:validMoves} we can see the architecture of the network.
+
+\begin{figure}[!h]
+		\centering	
+		\includegraphics[width=0.7\textwidth]{pic/validMoves.jpg}
+		\caption{Valid moves network}
+		\label{pic:validMoves}
+	\end{figure}
+	
+	The network returns back a vector of 'validity' of the moves. So each output is a vector $[v1,v2,v3,v4]$ where $vi\in <0,1>$. When the value is $1$ is surely valid when $0$ it is completely not valid.	
+\paragraph{Decision Network}
+Only avoiding walls was not our goal, so we then thought about a decision making network. Since our last tries consisting three last points were unsuccessful we decided to go witch more local but easier to train controller.
+
+What we noticed is that a network once detects glitter should not diverge more than one field from the point in which the sense was picked.
+
+To make it easier for the network we stated that it is not important if we feel wind or smell since both are equally deadly. So we created a combined sense called 'danger'. Glitter was left intact.
+
+As an input we provided last two senses, last move and current senses (look~\ref{pic:decionMoves}).
+
+\begin{figure}[!h]
+		\centering	
+		\includegraphics[width=0.7\textwidth]{pic/decisionNet.jpg}
+		\caption{The decision network}
+		\label{pic:decionMoves}
+	\end{figure}
+
+The output was a $4x1$ vector containing probabilities of this move to be chosen by the agent.
+
+\paragraph{Combination}
+	The outputs from the network were two $4x1$ vectors. One was representing the validity of the move the second one probability of this move being a good one given current situation.
+	
+	To combine the two vectors we multiply the value by value. Then normalize the outcome and create 'proportional roulette'. The move that is picked is the move that the agent will take.  
+
+\subsection{Results}
+	We encountered a big increase of success ration. Newly created agent was able to win around $32\%$ of games. 
+	
+	There are still some issues that needs to be addressed.	When an agent doesn't have any memory it may fall into loops that may cause death cause by two many moves. It doesn't know that he has to risk it when there is no other options.
+
+\section{Human player}
+We also were curious how much games can a human win. Actually it came as an shock to us when it turned out that a trained man cannot win much more than 50\% of games even when all the history is displayed on the screen~pic.\ref{pic:humanGame}
+
+\begin{figure}[!h]
+		\centering	
+		\includegraphics[width=0.7\textwidth]{pic/humanGame.jpg}
+		\caption{Human game play}
+		\label{pic:humanGame}
+	\end{figure}
+
+\section{Summary}
+
 
 \end{document}
