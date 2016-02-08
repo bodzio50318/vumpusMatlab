@@ -3,7 +3,6 @@
 *.out
 *.txt
 *.gz
-*.pdf
 *.aux
 *.log
 *.bib
